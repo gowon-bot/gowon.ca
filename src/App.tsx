@@ -1,24 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.scss";
+
+import { HomePage } from "./pages/HomePage/HomePage";
+import { Navbar } from "./components/Navbar/Navbar";
+import { Footer } from "./components/Footer/Footer";
+import { useAppDispatch } from "./hooks";
+import { login } from "./store/slices/userSlice";
+import { DiscordAuthPage } from "./pages/DiscordAuthPage/DiscordAuthPage";
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      dispatch(login(JSON.parse(user)));
+    }
+
+    return () => {};
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navbar></Navbar>
+
+        <div className="App-content">
+          <Switch>
+            <Route
+              path="/discordAuth"
+              render={(routeProps) => <DiscordAuthPage {...routeProps} />}
+            />
+
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+
+      <Footer></Footer>
     </div>
   );
 }

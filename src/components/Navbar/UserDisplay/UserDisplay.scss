@@ -1,0 +1,24 @@
+.UserDisplay {
+  padding: 7px 10px;
+
+  .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
+
+  button {
+    color: red;
+
+    &:active {
+      color: darkred;
+    }
+  }
+}

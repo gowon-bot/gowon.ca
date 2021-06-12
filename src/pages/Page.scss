@@ -1,0 +1,9 @@
+.Page {
+  padding: 0.5em;
+}
+
+.Page.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

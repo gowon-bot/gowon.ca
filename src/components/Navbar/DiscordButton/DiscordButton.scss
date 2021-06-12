@@ -1,0 +1,17 @@
+.DiscordButton {
+  button {
+    font-size: 1em;
+    background: #5865f2;
+    color: whitesmoke;
+    border-color: #5865f2;
+
+    &:hover {
+      background: white;
+      color: #5865f2;
+    }
+
+    &:active {
+      background: #dde0fc;
+    }
+  }
+}
