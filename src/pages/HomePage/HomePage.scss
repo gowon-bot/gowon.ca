@@ -1,0 +1,12 @@
+.HomePage {
+  .Page {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .Card {
+    width: 23%;
+    height: 300px;
+  }
+}

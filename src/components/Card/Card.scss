@@ -1,0 +1,18 @@
+.Card {
+  border: 2px black solid;
+  border-radius: 1em;
+  padding: 0.5em;
+  background: white;
+  transition: all 150ms ease-in;
+  margin: 1em;
+
+  &:hover {
+    cursor: pointer;
+    transform: translate(-4px, -4px);
+  }
+
+  &:active {
+    transition: 0ms;
+    transform: none;
+  }
+}

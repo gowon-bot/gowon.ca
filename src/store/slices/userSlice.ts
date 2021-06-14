@@ -8,8 +8,6 @@ const userSlice = createSlice({
   },
   reducers: {
     loginWithLocalStorage(state, action: PayloadAction<User>) {
-      console.log("logging in ", action.payload);
-
       state.value = action.payload;
       localStorage.setItem("user", JSON.stringify(action.payload));
     },

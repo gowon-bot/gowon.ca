@@ -32,7 +32,7 @@ export const UserDisplay: React.FunctionComponent<UserDisplayProps> = ({
       onMouseLeave={handleMouseLeave}
     >
       <div className="user" style={{ display: showLogout ? "none" : "flex" }}>
-        <img alt="user profile picture" src={user.avatarURL}></img>
+        <img alt="user profile" src={user.avatarURL}></img>
         <p>{user.username}</p>
       </div>
       {showLogout && (
