@@ -1,12 +1,48 @@
-button {
+button,
+a.button {
   border: 2px black solid;
   padding: 0.5em 1.25em;
   border-radius: 25em;
   transition: all 150ms;
+  background: white;
 
   &:hover {
     cursor: pointer;
   }
+
+  &.button-discord {
+    background: #5865f2;
+    color: whitesmoke;
+    border-color: #5865f2;
+
+    &:hover {
+      background: white;
+      color: #5865f2;
+    }
+
+    &:active {
+      background: #dde0fc;
+    }
+  }
+
+  &.button-lastfm {
+    background: #f25965;
+    color: whitesmoke;
+    border-color: #f25965;
+
+    &:hover {
+      background: white;
+      color: #f25965;
+    }
+
+    &:active {
+      background: #dde0fc;
+    }
+  }
+}
+
+a.button {
+  text-decoration: none;
 }
 
 button.link {

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.scss";
 
 import { HomePage } from "./pages/HomePage/HomePage";
-import { RatingsPage } from "./pages/RatingsPage/RatingsPage";
+// import { RatingsPage } from "./pages/RatingsPage/RatingsPage";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Footer } from "./components/Footer/Footer";
 import { useAppDispatch } from "./hooks";
@@ -35,9 +35,9 @@ function App() {
               render={(routeProps) => <DiscordAuthPage {...routeProps} />}
             />
 
-            <Route path="/ratings">
+            {/* <Route path="/ratings">
               <RatingsPage />
-            </Route>
+            </Route> */}
 
             <Route path="/">
               <HomePage />
