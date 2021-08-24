@@ -1,0 +1,74 @@
+.CommandHelp {
+  padding: 1em;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+
+  .help-content {
+    padding-left: 1.5em;
+  }
+
+  .command-title {
+    display: flex;
+    align-items: center;
+
+    .expander {
+      font-size: 0.7em;
+      margin-right: 5px;
+
+      &.expanded {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  transition: 150ms ease-in-out;
+
+  &:hover {
+    background: whitesmoke;
+    cursor: pointer;
+  }
+}
+
+.subtitle {
+  margin-left: 3px;
+  font-size: 0.4em;
+}
+
+.help-description {
+  color: grey;
+  margin-left: 2px;
+}
+
+.aliases {
+  margin-top: 0.5em;
+  display: flex;
+  align-items: center;
+
+  .aliases-content {
+    display: inline-block;
+
+    .alias {
+      margin-left: 7px;
+    }
+  }
+}
+
+.usage {
+  margin-top: 0.5em;
+
+  .usage-title {
+    margin-bottom: 0.7em;
+  }
+
+  .usage-content {
+    padding-left: 1.5em;
+
+    .command-name {
+      color: #474747;
+    }
+  }
+}

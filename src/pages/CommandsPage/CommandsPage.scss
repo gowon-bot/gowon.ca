@@ -1,0 +1,19 @@
+.Page {
+  margin-left: 0.5em;
+}
+
+.command-search {
+  display: flex;
+  align-items: baseline;
+  font-size: 2em;
+  margin-bottom: 1em;
+
+  .command-search-input {
+    padding: none;
+    margin-left: 0.3em;
+    font-size: inherit;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+  }
+}

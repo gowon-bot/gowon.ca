@@ -17,6 +17,8 @@ export const Navbar: React.FunctionComponent = () => {
 
       <h3 className="navbar-item">Gowon</h3>
 
+      <Link to="/commands">Commands</Link>
+
       <div className="push"></div>
 
       {/* {user ? <UserDisplay user={user} /> : <DiscordButton />} */}
