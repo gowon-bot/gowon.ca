@@ -15,7 +15,7 @@ export const HomePage: React.FunctionComponent = () => {
           <DiscordMessage
             displayName="Gowon"
             roleColour="#02BCA1"
-            avatarURL="https://cdn.discordapp.com/avatars/720135602669879386/72dbc5628d2e045826f96229a9345a08.png?size=1024"
+            avatarURL="https://gowon.ca/assets/gowonnies.png"
           >
             <p>Welcome to Gowon!</p>
           </DiscordMessage>
@@ -38,6 +38,12 @@ export const HomePage: React.FunctionComponent = () => {
               className="button button-lastfm lastfm"
             >
               Follow her on Last.fm
+            </a>
+            <a
+              href="https://github.com/jivison/gowon"
+              className="button button-github github"
+            >
+              Github
             </a>
           </div>
         </div>

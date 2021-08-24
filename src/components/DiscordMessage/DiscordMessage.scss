@@ -2,10 +2,8 @@
   margin-bottom: 1rem;
   display: flex;
 
-  justify-content: center;
-  align-items: center;
-
   .profile-picture {
+    margin-top: 2px;
     width: 2.5rem;
     height: 2.5rem;
     clip-path: circle();
@@ -34,5 +32,6 @@
 
   .message-content {
     font-size: 95%;
+    text-align: left;
   }
 }
