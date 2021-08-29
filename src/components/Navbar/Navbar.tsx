@@ -15,9 +15,13 @@ export const Navbar: React.FunctionComponent = () => {
         <img alt="logo" className="navbar-item logo" src={GowonLogo}></img>
       </Link>
 
-      <h3 className="navbar-item">Gowon</h3>
+      <Link className="menu-item" to="/">
+        Home
+      </Link>
 
-      <div className="push"></div>
+      <Link className="menu-item" to="/commands">
+        Commands
+      </Link>
 
       {/* {user ? <UserDisplay user={user} /> : <DiscordButton />} */}
     </div>
