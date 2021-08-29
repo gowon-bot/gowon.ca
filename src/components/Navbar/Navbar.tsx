@@ -23,6 +23,7 @@ export const Navbar: React.FunctionComponent = () => {
         Commands
       </Link>
 
+      <div></div>
       {/* {user ? <UserDisplay user={user} /> : <DiscordButton />} */}
     </div>
   );
