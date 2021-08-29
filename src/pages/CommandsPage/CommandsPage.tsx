@@ -16,8 +16,26 @@ const COMMANDS = gql`
       name
       friendlyName
       description
-      aliases
       usage
+
+      aliases
+      variations {
+        name
+        variation
+        description
+      }
+
+      hasChildren
+      children {
+        id
+        idSeed
+        parentName
+        name
+        friendlyName
+        description
+        aliases
+        usage
+      }
     }
   }
 `;
@@ -40,9 +58,11 @@ export const CommandsPage: React.FunctionComponent = () => {
           <h2>Search: </h2>
           <DebounceInput
             className="command-search-input"
-            minLength={2}
+            minLength={1}
             debounceTimeout={300}
-            onChange={(event) => setKeywords(event.target.value || undefined)}
+            onChange={(event) =>
+              setKeywords(event.target.value.trim() || undefined)
+            }
           />
         </div>
 
@@ -50,7 +70,7 @@ export const CommandsPage: React.FunctionComponent = () => {
           <></>
         ) : (
           data.commands.map((c: any) => (
-            <CommandHelp command={c} key={c.id}></CommandHelp>
+            <CommandHelp command={c} key={c.idSeed}></CommandHelp>
           ))
         )}
 

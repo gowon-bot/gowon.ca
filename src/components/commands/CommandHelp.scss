@@ -11,10 +11,11 @@
     padding-left: 1.5em;
   }
 
-  .command-title {
-    display: flex;
-    align-items: center;
+  &.parent > .help-description {
+    margin-bottom: 1em;
+  }
 
+  .command-title {
     .expander {
       font-size: 0.7em;
       margin-right: 5px;
@@ -27,14 +28,23 @@
 
   transition: 150ms ease-in-out;
 
-  &:hover {
+  &:not(.in-parent):hover {
     background: whitesmoke;
     cursor: pointer;
+  }
+
+  &.in-parent:hover {
+    background: white;
+  }
+
+  &.in-parent {
+    width: 100%;
+    z-index: 10;
   }
 }
 
 .subtitle {
-  margin-left: 3px;
+  margin-left: 10px;
   font-size: 0.4em;
 }
 
@@ -43,16 +53,34 @@
   margin-left: 2px;
 }
 
-.aliases {
+.aliases,
+.variations {
   margin-top: 0.5em;
   display: flex;
   align-items: center;
 
-  .aliases-content {
+  .aliases-content,
+  .variations-content {
     display: inline-block;
 
     .alias {
       margin-left: 7px;
+    }
+  }
+}
+
+.variations {
+  display: block;
+
+  .variations-content {
+    padding-left: 1.6em;
+
+    .variation {
+      margin-left: 7px;
+    }
+
+    .variation:first-child {
+      margin-left: 1px;
     }
   }
 }
@@ -71,4 +99,8 @@
       color: #474747;
     }
   }
+}
+
+.parent-name {
+  color: grey;
 }
