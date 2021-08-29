@@ -4,6 +4,7 @@
 
   display: flex;
   align-items: center;
+  // justify-content: space-between;
 
   .logo {
     width: 50px;
@@ -12,11 +13,34 @@
     border-radius: 50%;
   }
 
-  .navbar-item {
-    margin-right: 0.5em;
+  .navbar-item,
+  .menu-item {
+    margin-right: 2em;
+  }
+
+  .menu-item {
+    border-bottom: black 2px solid;
+
+    &:hover {
+      border-color: #02bca1;
+    }
   }
 
   .push {
     margin-left: auto;
+  }
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.menu-item {
+  text-decoration: none;
+  font-size: 1.3em;
+
+  &:hover {
+    color: #02bca1;
   }
 }

@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400");
 @import "styles/buttons";
 @import "styles/links";
+@import "styles/text";
 
 html {
-  font-size: 106.3%;
-} /*17px*/
+  font-size: 93.8%;
+} /*15px*/
 
 body {
-  background: #faf9fb;
+  background: white;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   line-height: 1.75;
@@ -25,6 +26,7 @@ h5 {
 }
 
 h1 {
+  margin-top: 0;
   font-size: 3.052rem;
 }
 
