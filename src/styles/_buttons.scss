@@ -54,6 +54,21 @@ a.button {
       background: #dde0fc;
     }
   }
+
+  &.button-patreon {
+    background: #ff424d;
+    color: #ffffff;
+    border-color: #ff424d;
+
+    &:hover {
+      background: whitesmoke;
+      color: #ee454e;
+    }
+
+    &:active {
+      background: #dde0fc;
+    }
+  }
 }
 
 a.button {

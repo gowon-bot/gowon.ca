@@ -40,6 +40,12 @@ export const HomePage: React.FunctionComponent = () => {
               Follow her on Last.fm
             </a>
             <a
+              href="https://www.patreon.com/gowon_"
+              className="button button-patreon patreon"
+            >
+              Support me on Patreon
+            </a>
+            <a
               href="https://github.com/jivison/gowon"
               className="button button-github github"
             >
