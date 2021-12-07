@@ -1,6 +1,7 @@
 .text-inline {
   font-family: monospace;
-  background: #eaebee;
+  color: var(--color-secondary);
+  background: var(--background-lighter);
   padding: 1.5px 4px;
   border-radius: 4px;
 }

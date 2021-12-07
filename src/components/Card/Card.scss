@@ -1,8 +1,8 @@
 .Card {
-  border: 2px black solid;
+  border: 2px var(--color-primary) solid;
   border-radius: 1em;
   padding: 0.5em;
-  background: white;
+  background: var(--background-primary);
   transition: all 150ms ease-in;
   margin: 1em;
 

@@ -1,0 +1,28 @@
+:root {
+  // Text
+  --font-primary: "Lato", sans-serif;
+
+  // Colors
+  --gowon-green: #02bca1;
+  --discord-blurple: #5865f2;
+  --lastfm-red: #f25965;
+  --patreon-orange: #ff424d;
+}
+
+.light-mode {
+  --color-primary: black;
+  --color-secondary: #6d6d6d;
+
+  --background-primary: whitesmoke;
+  --background-lighter: white;
+  --background-darker: rgb(226, 224, 224);
+}
+
+.dark-mode {
+  --color-primary: whitesmoke;
+  --color-secondary: #b9b8b8;
+
+  --background-primary: rgb(32, 30, 30);
+  --background-lighter: rgb(48, 45, 45);
+  --background-darker: #363434;
+}

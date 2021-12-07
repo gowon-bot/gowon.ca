@@ -24,7 +24,7 @@ export const DiscordMessage: React.FunctionComponent<DiscordMessageProps> = ({
         <h2 className="header">
           <span
             className="display-name"
-            style={{ color: roleColour || "black" }}
+            style={{ color: roleColour || "var(--color-primary)" }}
           >
             {displayName}
           </span>

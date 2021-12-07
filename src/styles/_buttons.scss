@@ -1,73 +1,26 @@
 button,
 a.button {
-  border: 2px black solid;
+  border: 2px var(--color-primary) solid;
   padding: 0.5em 1.25em;
   border-radius: 25em;
   transition: all 150ms;
-  background: white;
+  background: var(--background-primary);
 
   &:hover {
     cursor: pointer;
+    background: var(--background-darker);
   }
 
   &.button-discord {
-    background: #5865f2;
-    color: whitesmoke;
-    border-color: #5865f2;
-
-    &:hover {
-      background: whitesmoke;
-      color: #5865f2;
-    }
-
-    &:active {
-      background: #dde0fc;
-    }
+    border-color: var(--discord-blurple);
   }
 
   &.button-lastfm {
-    background: #f25965;
-    color: whitesmoke;
-    border-color: #f25965;
-
-    &:hover {
-      background: whitesmoke;
-      color: #f25965;
-    }
-
-    &:active {
-      background: #dde0fc;
-    }
-  }
-
-  &.button-github {
-    background: #2d333a;
-    color: whitesmoke;
-    border-color: #2d333a;
-
-    &:hover {
-      background: whitesmoke;
-      color: #2d333a;
-    }
-
-    &:active {
-      background: #dde0fc;
-    }
+    border-color: var(--lastfm-red);
   }
 
   &.button-patreon {
-    background: #ff424d;
-    color: #ffffff;
-    border-color: #ff424d;
-
-    &:hover {
-      background: whitesmoke;
-      color: #ee454e;
-    }
-
-    &:active {
-      background: #dde0fc;
-    }
+    border-color: var(--patreon-orange);
   }
 }
 

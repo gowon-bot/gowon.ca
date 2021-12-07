@@ -29,12 +29,12 @@
   transition: 150ms ease-in-out;
 
   &:not(.in-parent):hover {
-    background: whitesmoke;
+    background: var(--background-primary);
     cursor: pointer;
   }
 
   &.in-parent:hover {
-    background: white;
+    background: var(--background-lighter);
   }
 
   &.in-parent {
@@ -48,8 +48,12 @@
   font-size: 0.4em;
 }
 
+.parent-name {
+  color: var(--color-secondary);
+}
+
 .help-description {
-  color: grey;
+  color: var(--color-secondary);
   margin-left: 2px;
 }
 
@@ -96,11 +100,7 @@
     padding-left: 1.5em;
 
     .command-name {
-      color: #474747;
+      color: var(--color-secondary);
     }
   }
-}
-
-.parent-name {
-  color: grey;
 }

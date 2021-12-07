@@ -2,17 +2,22 @@
 @import "styles/buttons";
 @import "styles/links";
 @import "styles/text";
+@import "styles/variables";
+
+:root {
+  color-scheme: light dark;
+}
 
 html {
   font-size: 93.8%;
 } /*15px*/
 
 body {
-  background: white;
-  font-family: "Lato", sans-serif;
+  background: var(--background-primary);
+  font-family: var(--font-primary);
   font-weight: 400;
   line-height: 1.75;
-  color: #000000;
+  color: var(--color-primary);
 }
 
 h1,

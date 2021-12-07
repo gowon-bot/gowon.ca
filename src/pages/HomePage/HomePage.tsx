@@ -1,21 +1,18 @@
 import React from "react";
 import { DiscordMessage } from "../../components/DiscordMessage/DiscordMessage";
 import { Page } from "../Page";
-// import { Card } from "../../components/Card/Card";
 import "./HomePage.scss";
+import Gowonnies from "../../assets/gowonnies.png";
 
 export const HomePage: React.FunctionComponent = () => {
   return (
     <div className="HomePage">
       <Page title="Home" centered={true}>
-        {/* <Card linkTo="/ratings">
-          <h2>Ratings</h2>
-        </Card> */}
         <div className="content">
           <DiscordMessage
             displayName="Gowon"
-            roleColour="#02BCA1"
-            avatarURL="https://gowon.ca/assets/gowonnies.png"
+            roleColour="var(--gowon-green)"
+            avatarURL={Gowonnies}
           >
             <p>Welcome to Gowon!</p>
           </DiscordMessage>

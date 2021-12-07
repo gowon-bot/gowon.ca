@@ -1,6 +1,7 @@
 import React, { MouseEventHandler, useState } from "react";
 import { DiscordMessage } from "../DiscordMessage/DiscordMessage";
 import "./CommandHelp.scss";
+import Gowonniess from "../../assets/gowonniess.png";
 
 interface CommandHelpProps {
   command: Command;
@@ -87,7 +88,7 @@ export const CommandHelp: React.FunctionComponent<CommandHelpProps> = ({
                   <DiscordMessage
                     key={u}
                     displayName="You"
-                    avatarURL="https://gowon.ca/assets/gowonniess.png"
+                    avatarURL={Gowonniess}
                     roleColour="#9864b0"
                   >
                     <span className="command-name">
