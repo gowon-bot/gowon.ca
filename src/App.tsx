@@ -5,10 +5,11 @@ import "./App.scss";
 import { HomePage } from "./pages/HomePage/HomePage";
 // import { RatingsPage } from "./pages/RatingsPage/RatingsPage";
 import { CommandsPage } from "./pages/CommandsPage/CommandsPage";
+import { ImportRatingsPage } from "./pages/ImportRatingsPage/ImportRatingsPage";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Footer } from "./components/Footer/Footer";
 import { useAppDispatch } from "./hooks";
-import { login } from "./store/slices/userSlice";
+import { login } from "./store/slices/tokenSlice";
 import { DiscordAuthPage } from "./pages/DiscordAuthPage/DiscordAuthPage";
 import { ApolloProvider } from "@apollo/client";
 import { gowonClient } from "./helpers/gowon/client";
@@ -42,6 +43,10 @@ function App() {
               <ApolloProvider client={gowonClient}>
                 <CommandsPage />
               </ApolloProvider>
+            </Route>
+
+            <Route path="/import-ratings">
+              <ImportRatingsPage />
             </Route>
 
             {/* <Route path="/ratings">

@@ -11,30 +11,34 @@
     width: 23%;
     height: 300px;
   }
-}
 
-.content {
-  margin-top: 10%;
+  .discord-username {
+    color: var(--gowon-development-pink);
+  }
 
-  overflow: hidden;
-  border-radius: 2em;
+  .content {
+    margin-top: 10%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+    overflow: hidden;
+    border-radius: 2em;
 
-.buttons {
-  margin-top: 0.8rem;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 0em 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-  .button {
-    font-size: 90%;
-    min-width: 250px;
-    margin-bottom: 0.8rem;
+  .buttons {
+    margin-top: 0.8rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0em 1em;
+
+    .button {
+      font-size: 90%;
+      min-width: 250px;
+      margin-bottom: 0.8rem;
+    }
   }
 }

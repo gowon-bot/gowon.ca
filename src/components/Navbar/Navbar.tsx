@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.scss";
 import GowonLogo from "../../assets/gowonnies.png";
-// import { useAppSelector } from "../../hooks";
-// import { DiscordButton } from "./DiscordButton/DiscordButton";
-// import { UserDisplay } from "./UserDisplay/UserDisplay";
+import { useAppSelector } from "../../hooks";
+import { UserDisplay } from "./UserDisplay/UserDisplay";
 import { Link } from "react-router-dom";
+import { getDiscordAuthURL } from "../../helpers/discord";
 
 const toggleDarkMode = (state: boolean) => {
   document.body.classList.toggle("dark-mode", state);
@@ -12,13 +12,11 @@ const toggleDarkMode = (state: boolean) => {
 };
 
 export const Navbar: React.FunctionComponent = () => {
-  // const user = useAppSelector((state) => state.user.value);
+  const token = useAppSelector((state) => state.token.value);
   const [useDarkMode, setUseDarkMode] = useState(false);
 
   useEffect(() => {
     const themePreference = localStorage.getItem("themePreference");
-
-    console.log(themePreference);
 
     let shouldUseDarkMode = !!window.matchMedia(`(prefers-color-scheme: dark)`);
 
@@ -34,8 +32,6 @@ export const Navbar: React.FunctionComponent = () => {
   }, []);
 
   const switchTheme = () => {
-    console.log(useDarkMode);
-
     toggleDarkMode(!useDarkMode);
     localStorage.setItem("themePreference", !useDarkMode ? "dark" : "light");
     setUseDarkMode(!useDarkMode);
@@ -58,8 +54,19 @@ export const Navbar: React.FunctionComponent = () => {
         Commands
       </Link>
 
-      <div></div>
-      {/* {user ? <UserDisplay user={user} /> : <DiscordButton />} */}
+      <Link className="menu-item" to="/import-ratings">
+        Import ratings
+      </Link>
+
+      <div className="grow"></div>
+
+      {token?.discord_user ? (
+        <UserDisplay user={token.discord_user} />
+      ) : (
+        <a className="button button-discord" href={getDiscordAuthURL()}>
+          Login with Discord
+        </a>
+      )}
     </div>
   );
 };

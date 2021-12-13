@@ -3,8 +3,11 @@ import { DiscordMessage } from "../../components/DiscordMessage/DiscordMessage";
 import { Page } from "../Page";
 import "./HomePage.scss";
 import Gowonnies from "../../assets/gowonnies.png";
+import { useAppSelector } from "../../hooks";
 
 export const HomePage: React.FunctionComponent = () => {
+  const token = useAppSelector((state) => state.token.value);
+
   return (
     <div className="HomePage">
       <Page title="Home" centered={true}>
@@ -14,7 +17,19 @@ export const HomePage: React.FunctionComponent = () => {
             roleColour="var(--gowon-green)"
             avatarURL={Gowonnies}
           >
-            <p>Welcome to Gowon!</p>
+            <p>
+              Welcome to Gowon
+              {token ? (
+                <>
+                  ,{" "}
+                  <span className="discord-username">
+                    {token.discord_user.username}
+                  </span>
+                </>
+              ) : (
+                <>!</>
+              )}
+            </p>
           </DiscordMessage>
 
           <div className="buttons">

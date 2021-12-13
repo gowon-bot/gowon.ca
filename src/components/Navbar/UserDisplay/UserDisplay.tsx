@@ -1,45 +1,35 @@
-import React, { useState } from "react";
-import { useAppDispatch } from "../../../hooks";
-import { User } from "../../../interfaces/User";
-import { logout } from "../../../store/slices/userSlice";
+import React from "react";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { DiscordUser } from "../../../interfaces/DoughnutToken";
+import { logout } from "../../../store/slices/tokenSlice";
+import { destroyToken } from "../../../helpers/doughnut";
 import "./UserDisplay.scss";
 
 interface UserDisplayProps {
-  user: User;
+  user: DiscordUser;
 }
 
 export const UserDisplay: React.FunctionComponent<UserDisplayProps> = ({
-  children,
   user,
 }) => {
-  const [showLogout, setShowLogout] = useState(false);
+  const token = useAppSelector((state) => state.token.value);
   const dispatch = useAppDispatch();
 
-  const handleMouseEnter = () => {
-    setShowLogout(true);
-  };
-  const handleMouseLeave = () => {
-    setShowLogout(false);
-  };
   const handleLogout = () => {
     dispatch(logout());
+    destroyToken(token!);
   };
 
   return (
-    <div
-      className="UserDisplay"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className="user" style={{ display: showLogout ? "none" : "flex" }}>
+    <div className="UserDisplay">
+      <div className="user">
         <img alt="user profile" src={user.avatarURL}></img>
         <p>{user.username}</p>
       </div>
-      {showLogout && (
-        <button className="link" onClick={handleLogout}>
-          Logout
-        </button>
-      )}
+
+      <button className="link" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 };

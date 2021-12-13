@@ -89,7 +89,7 @@ export const CommandHelp: React.FunctionComponent<CommandHelpProps> = ({
                     key={u}
                     displayName="You"
                     avatarURL={Gowonniess}
-                    roleColour="#9864b0"
+                    roleColour="var(--gowon-development-pink)"
                   >
                     <span className="command-name">
                       {prefix}

@@ -1,14 +1,20 @@
-button,
+button:not(.link),
 a.button {
+  color: var(--color-primary);
   border: 2px var(--color-primary) solid;
   padding: 0.5em 1.25em;
   border-radius: 25em;
   transition: all 150ms;
   background: var(--background-primary);
 
-  &:hover {
+  &:hover:not(:disabled) {
     cursor: pointer;
     background: var(--background-darker);
+  }
+
+  &:disabled {
+    color: grey;
+    border-color: grey;
   }
 
   &.button-discord {
@@ -34,4 +40,9 @@ button.link {
   transition: all 150ms;
   background: transparent;
   font-size: 100%;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

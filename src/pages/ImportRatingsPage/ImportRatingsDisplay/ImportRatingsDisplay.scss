@@ -1,0 +1,36 @@
+.ImportRatingsDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    margin-right: 1em;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .buttons {
+      margin-top: 0.5em;
+      display: flex;
+
+      button {
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  .status {
+    margin-top: 2em;
+
+    .errored {
+      color: red;
+    }
+
+    .success {
+      color: var(--gowon-green);
+    }
+  }
+}

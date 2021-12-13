@@ -15,13 +15,13 @@ const RATINGS = gql`
 `;
 
 export const Ratings: React.FunctionComponent = () => {
-  const user = useAppSelector((state) => state.user.value);
+  const user = useAppSelector((state) => state.token.value);
 
   const [getRatings, { loading, data }] = useLazyQuery(RATINGS);
 
   useEffect(() => {
     if (user) {
-      getRatings({ variables: { discordID: user.discordID } });
+      getRatings({ variables: { discordID: user.discord_user.id } });
     }
 
     return () => {};

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
+import { getUserFromCode } from "../../helpers/doughnut";
 import { useAppDispatch } from "../../hooks";
-import { loginWithLocalStorage } from "../../store/slices/userSlice";
+import { loginWithLocalStorage } from "../../store/slices/tokenSlice";
 import { SomethingWentWrong } from "../errors/SomethingWentWrong";
 import { Page } from "../Page";
-import { getUserFromCode } from "../../helpers/gowon/user";
 
 interface DiscordAuthPageProps extends RouteComponentProps<any> {}
 
