@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
 
 import { HomePage } from "./pages/HomePage/HomePage";
-// import { RatingsPage } from "./pages/RatingsPage/RatingsPage";
+import { SpotifySuccessPage } from "./pages/SpotifySuccessPage/SpotifySuccessPage";
 import { CommandsPage } from "./pages/CommandsPage/CommandsPage";
 import { ImportRatingsPage } from "./pages/ImportRatingsPage/ImportRatingsPage";
 import { Navbar } from "./components/Navbar/Navbar";
@@ -33,30 +33,27 @@ function App() {
         <Navbar></Navbar>
 
         <div className="App-content">
-          <Switch>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+
+            <Route path="/discordAuth" element={<DiscordAuthPage />} />
+
             <Route
-              path="/discordAuth"
-              render={(routeProps) => <DiscordAuthPage {...routeProps} />}
+              path="/commands"
+              element={
+                <ApolloProvider client={gowonClient}>
+                  <CommandsPage />
+                </ApolloProvider>
+              }
             />
 
-            <Route path="/commands">
-              <ApolloProvider client={gowonClient}>
-                <CommandsPage />
-              </ApolloProvider>
-            </Route>
+            <Route path="/import-ratings" element={<ImportRatingsPage />} />
 
-            <Route path="/import-ratings">
-              <ImportRatingsPage />
-            </Route>
-
-            {/* <Route path="/ratings">
-              <RatingsPage />
-            </Route> */}
-
-            <Route path="/">
-              <HomePage />
-            </Route>
-          </Switch>
+            <Route
+              path="/spotify-login-success"
+              element={<SpotifySuccessPage />}
+            />
+          </Routes>
         </div>
       </Router>
 

@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getUserFromCode } from "../../helpers/doughnut";
 import { useAppDispatch } from "../../hooks";
 import { loginWithLocalStorage } from "../../store/slices/tokenSlice";
 import { SomethingWentWrong } from "../errors/SomethingWentWrong";
 import { Page } from "../Page";
 
-interface DiscordAuthPageProps extends RouteComponentProps<any> {}
+export const DiscordAuthPage: React.FunctionComponent = () => {
+  const navigate = useNavigate();
 
-export const DiscordAuthPage: React.FunctionComponent<DiscordAuthPageProps> = ({
-  history,
-}) => {
   const [errored, setErrored] = useState(false);
   const dispatch = useAppDispatch();
 
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const code = urlSearchParams.get("code");
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get("code");
 
   useEffect(() => {
     if (code) {
@@ -23,7 +21,7 @@ export const DiscordAuthPage: React.FunctionComponent<DiscordAuthPageProps> = ({
         .then((user) => {
           if (user) {
             dispatch(loginWithLocalStorage(user));
-            history.push("/");
+            navigate("/");
           } else {
             setErrored(true);
           }
@@ -35,7 +33,7 @@ export const DiscordAuthPage: React.FunctionComponent<DiscordAuthPageProps> = ({
     }
 
     return () => {};
-  }, [dispatch, history, code]);
+  }, [dispatch, navigate, code]);
 
   if (!code) {
     return <SomethingWentWrong />;
