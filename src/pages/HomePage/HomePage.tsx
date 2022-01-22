@@ -58,7 +58,7 @@ export const HomePage: React.FunctionComponent = () => {
               Support me on Patreon
             </a>
             <a
-              href="https://github.com/jivison/gowon"
+              href="https://github.com/gowon-bot/gowon"
               className="button button-github github"
             >
               Github
