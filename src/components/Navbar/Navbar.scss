@@ -1,3 +1,5 @@
+$mobile-width: 40em;
+
 .Navbar {
   width: 100%;
   padding: 0.5em;
@@ -5,57 +7,117 @@
   display: flex;
   align-items: center;
 
-  .logo {
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    border-radius: 50%;
-    box-shadow: 2px 2px var(--color-primary);
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:active {
-      transform: translate(2px, 2px);
-      box-shadow: 0px 0px;
-    }
+  @media only screen and (max-width: $mobile-width) {
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    justify-content: space-between;
   }
 
-  .navbar-item,
-  .menu-item {
-    margin-right: 2em;
-  }
-
-  .menu-item {
-    border-bottom: var(--color-primary) 2px solid;
-
-    &:hover {
-      border-color: #02bca1;
+  @media only screen and (min-width: $mobile-width) {
+    .navbar-item,
+    .menu-item {
+      margin-right: 2em;
     }
-  }
-
-  .push {
-    margin-left: auto;
   }
 }
 
-.logo-container {
+.menu-items {
+  width: 100%;
   display: flex;
-  align-items: center;
+
+  @media only screen and (max-width: $mobile-width) {
+    height: 100%;
+    width: 60%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    border-left: 1px var(--color-primary) solid;
+
+    flex-direction: column;
+    background-color: var(--background-primary);
+    padding-top: 1rem;
+
+    transition: 0.3s ease-in-out;
+
+    &.closed {
+      transform: translateX(100%);
+    }
+
+    &.open {
+      transform: translateX(0%);
+    }
+  }
 }
 
 .menu-item,
 .menu-item:visited {
   color: var(--color-primary);
   text-decoration: none;
-  font-size: 1.3em;
+  padding: 0 1rem;
+  cursor: pointer;
+  border-bottom: var(--color-primary) 2px solid;
+  font-size: 1.2em;
+
+  &:not(.user-item):hover {
+    border-color: #02bca1;
+    color: #02bca1;
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    font-size: 1.1em;
+    border: none;
+    margin-bottom: 1em;
+  }
+}
+
+.user-item {
+  border: none;
+}
+
+.hamburger-button {
+  cursor: pointer;
+  height: 3rem;
+  width: 3rem;
+  position: relative;
+  font-size: 12px;
+
+  display: none;
+
+  @media only screen and (max-width: $mobile-width) {
+    display: block;
+  }
+
+  .lines {
+    font-size: 2em;
+    text-align: center;
+  }
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 2px 2px var(--color-primary);
 
   &:hover {
-    color: #02bca1;
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px;
   }
 }
 
 .grow {
-  flex-grow: 1;
+  @media only screen and (min-width: $mobile-width) {
+    flex-grow: 1;
+  }
+}
+
+.discord-login-button {
+  @media only screen and (max-width: $mobile-width) {
+    font-size: 0.9em;
+  }
 }

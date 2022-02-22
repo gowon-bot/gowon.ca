@@ -1,7 +1,6 @@
 git pull
 
-cd "gowon.ca"
-
+yarn
 yarn build
 
 rm -rf /var/www/gowon.ca/html/

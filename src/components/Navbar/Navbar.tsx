@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.scss";
 import GowonLogo from "../../assets/gowonnies.png";
 import { useAppSelector } from "../../hooks";
 import { UserDisplay } from "./UserDisplay/UserDisplay";
 import { Link } from "react-router-dom";
 import { getDiscordAuthURL } from "../../helpers/discord";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const toggleDarkMode = (state: boolean) => {
   document.body.classList.toggle("dark-mode", state);
@@ -14,6 +16,31 @@ const toggleDarkMode = (state: boolean) => {
 export const Navbar: React.FunctionComponent = () => {
   const token = useAppSelector((state) => state.token.value);
   const [useDarkMode, setUseDarkMode] = useState(false);
+  const drawerRef = useRef<HTMLDivElement | null>(null);
+
+  const openDrawer = () => {
+    drawerRef.current?.classList.toggle("open", true);
+    drawerRef.current?.classList.toggle("closed", false);
+  };
+
+  const closeDrawer = () => {
+    drawerRef.current?.classList.toggle("open", false);
+    drawerRef.current?.classList.toggle("closed", true);
+  };
+
+  useEffect(() => {
+    const eventCloseDrawer = (event: MouseEvent) => {
+      if (!drawerRef.current?.contains(event.target as Node)) {
+        closeDrawer();
+      }
+    };
+
+    document.addEventListener("mousedown", eventCloseDrawer);
+
+    return () => {
+      document.removeEventListener("mousedown", eventCloseDrawer);
+    };
+  }, []);
 
   useEffect(() => {
     const themePreference = localStorage.getItem("themePreference");
@@ -46,27 +73,38 @@ export const Navbar: React.FunctionComponent = () => {
         onClick={switchTheme}
       ></img>
 
-      <Link className="menu-item" to="/">
-        Home
-      </Link>
+      <button className="hamburger-button" onClick={openDrawer}>
+        <FontAwesomeIcon icon={faBars} />
+      </button>
 
-      <Link className="menu-item" to="/commands">
-        Commands
-      </Link>
+      <div className="menu-items closed" ref={drawerRef}>
+        <Link className="menu-item" to="/" onClick={closeDrawer}>
+          Home
+        </Link>
 
-      <Link className="menu-item" to="/import-ratings">
-        Import ratings
-      </Link>
+        <Link className="menu-item" to="/commands" onClick={closeDrawer}>
+          Commands
+        </Link>
 
-      <div className="grow"></div>
+        <Link className="menu-item" to="/import-ratings" onClick={closeDrawer}>
+          Import ratings
+        </Link>
 
-      {token?.discord_user ? (
-        <UserDisplay user={token.discord_user} />
-      ) : (
-        <a className="button button-discord" href={getDiscordAuthURL()}>
-          Login with Discord
-        </a>
-      )}
+        <div className="grow"></div>
+
+        <div className="menu-item user-item">
+          {token?.discord_user ? (
+            <UserDisplay user={token.discord_user} />
+          ) : (
+            <a
+              className="button button-discord discord-login-button"
+              href={getDiscordAuthURL()}
+            >
+              Login with Discord
+            </a>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

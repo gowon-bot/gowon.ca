@@ -8,20 +8,35 @@
     margin-bottom: 1em;
     border: 2px var(--color-primary) solid;
     background: var(--background-lighter);
-    width: 300px;
-    height: 300px;
-    border-radius: 3em;
+    width: 100px;
+    height: 100px;
+    border-radius: 1em;
+    color: transparent;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 100ms;
 
     &:hover {
       cursor: pointer;
     }
 
+    &:focus {
+      outline: none;
+      box-shadow: 2px 2px var(--gowon-green);
+    }
+
     &.selected {
       border: 2px var(--gowon-green) dashed;
     }
+  }
+
+  .reminder {
+    font-style: italic;
   }
 }
