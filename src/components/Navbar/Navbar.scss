@@ -15,6 +15,7 @@ $mobile-width: 40em;
   }
 
   @media only screen and (min-width: $mobile-width) {
+    margin-bottom: 1em;
     .navbar-item,
     .menu-item {
       margin-right: 2em;

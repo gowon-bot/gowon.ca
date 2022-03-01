@@ -13,6 +13,7 @@ import { login } from "./store/slices/tokenSlice";
 import { DiscordAuthPage } from "./pages/DiscordAuthPage/DiscordAuthPage";
 import { ApolloProvider } from "@apollo/client";
 import { gowonClient } from "./helpers/gowon/client";
+import { PrivacyPolicyPage } from "./pages/legalStuff/PrivacyPolicyPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -53,6 +54,8 @@ function App() {
               path="/spotify-login-success"
               element={<SpotifySuccessPage />}
             />
+
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
           </Routes>
         </div>
       </Router>
