@@ -36,7 +36,7 @@ export const PrivacyPolicyPage: React.FunctionComponent = () => {
             <p>...when she joins the server:</p>
             <ul>
               <li>
-                The users that in that server (this data is deleted when she
+                The users that are in that server (this data is deleted when she
                 leaves)
               </li>
             </ul>
