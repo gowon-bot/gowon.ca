@@ -91,9 +91,12 @@ export const PrivacyPolicyPage: React.FunctionComponent = () => {
           <h3 id="data-usage">What do you do with that data?</h3>
 
           <p>
-            We will never share your data with third party services, unless
-            specified. Your data will <span className="underline">never</span>{" "}
-            be sold.
+            All your data is stored on (and by extension shared with){" "}
+            <a href="https://www.digitalocean.com/">DigitalOcean</a>.
+            <br />
+            We will never share your data with other third party services,
+            unless specified. Your data will{" "}
+            <span className="underline">never</span> be sold.
           </p>
 
           <ul>
@@ -120,7 +123,7 @@ export const PrivacyPolicyPage: React.FunctionComponent = () => {
 
           <br />
 
-          <h3 id="data-management">How can I control that data?</h3>
+          <h3 id="data-management">How can I (the user) control that data?</h3>
 
           <p>Logging out will delete all your permanently stored data.</p>
           <p>Server data is also cleared when Gowon leaves a server.</p>
