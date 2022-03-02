@@ -165,6 +165,18 @@ export const PrivacyPolicyPage: React.FunctionComponent = () => {
               importing your ratings, and storing music metadata
             </li>
           </ul>
+
+          <br />
+
+          <h3 id="updates">Updates to the privacy policy</h3>
+
+          <p>
+            This document can be updated regularly and without prior notice to
+            reflect changes to our practices. If any major changes are made to
+            how we handle your data, a notice will be posted to the Gowon
+            support server. The date of the most recent update will be reflected
+            at the top of the privacy policy.
+          </p>
         </div>
       </Page>
     </div>
