@@ -11,11 +11,12 @@
   .command-search-input {
     font-family: var(--font-primary);
     color: var(--color-primary);
-    padding: none;
     margin-left: 0.3em;
     font-size: inherit;
     border: none;
     border-bottom: 2px solid var(--color-primary);
+    border-radius: 0px;
+    padding: none;
     outline: none;
     background-color: var(--background-primary);
   }
