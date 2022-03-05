@@ -13,7 +13,10 @@ import { login } from "./store/slices/tokenSlice";
 import { DiscordAuthPage } from "./pages/DiscordAuthPage/DiscordAuthPage";
 import { ApolloProvider } from "@apollo/client";
 import { gowonClient } from "./helpers/gowon/client";
-import { PrivacyPolicyPage } from "./pages/legalStuff/PrivacyPolicyPage";
+import { PrivacyPolicyPage } from "./pages/Legal/PrivacyPolicyPage";
+import { Toaster } from "react-hot-toast";
+import { GuildSettingsPage } from "./pages/Dashboard/Settings/GuildSettingsPage";
+import { DashboardLayout } from "./pages/Dashboard/DashboardLayout";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -30,17 +33,19 @@ function App() {
 
   return (
     <div className="App">
+      <Toaster position="bottom-center" />
+
       <Router>
         <Navbar></Navbar>
 
         <div className="App-content">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route index element={<HomePage />} />
 
-            <Route path="/discordAuth" element={<DiscordAuthPage />} />
+            <Route path="discordAuth" element={<DiscordAuthPage />} />
 
             <Route
-              path="/commands"
+              path="commands"
               element={
                 <ApolloProvider client={gowonClient}>
                   <CommandsPage />
@@ -48,14 +53,20 @@ function App() {
               }
             />
 
-            <Route path="/import-ratings" element={<ImportRatingsPage />} />
+            <Route path="import-ratings" element={<ImportRatingsPage />} />
 
             <Route
-              path="/spotify-login-success"
+              path="spotify-login-success"
               element={<SpotifySuccessPage />}
             />
 
-            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="privacy" element={<PrivacyPolicyPage />} />
+
+            <Route path="dashboard" element={<DashboardLayout />}>
+              <Route path="settings">
+                <Route path="guild/:guildID" element={<GuildSettingsPage />} />
+              </Route>
+            </Route>
           </Routes>
         </div>
       </Router>

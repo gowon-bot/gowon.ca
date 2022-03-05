@@ -1,0 +1,27 @@
+input,
+select {
+  color: var(--color-primary);
+  background: var(--background-primary);
+  border: 1px var(--color-primary) solid;
+  border-radius: 1em;
+  font-size: 1.1em;
+  padding: 0.3em;
+}
+
+select {
+  border-radius: 0.5em;
+  background: var(--background-primary);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type="text"] {
+  &.small {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 10px;
+  }
+}

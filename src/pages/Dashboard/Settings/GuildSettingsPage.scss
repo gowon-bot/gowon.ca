@@ -1,0 +1,24 @@
+.form-group-title {
+  margin-bottom: 0.5em;
+}
+
+.form-group {
+  padding-left: 2em;
+  margin-bottom: 2em;
+}
+
+.save-button {
+  font-size: 1.1em;
+}
+
+.guild-info {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 25px;
+    width: 25px;
+    clip-path: circle();
+    margin-right: 0.3em;
+  }
+}

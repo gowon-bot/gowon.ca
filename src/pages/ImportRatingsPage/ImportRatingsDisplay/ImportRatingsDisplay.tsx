@@ -3,6 +3,7 @@ import React from "react";
 import { useAppSelector } from "../../../hooks";
 import "./ImportRatingsDisplay.scss";
 import { useMutation } from "@apollo/client";
+import { authHeaderFromToken } from "../../../helpers/doughnut";
 
 interface ImportRatingsDisplayProps {
   ratings: string;
@@ -37,7 +38,7 @@ export const ImportRatingsDisplay: React.FunctionComponent<
   const clickImportRatings = () => {
     importRatings({
       variables: { csv: ratings, discordID: token!.discord_id },
-      context: { headers: { Authorization: `Bearer ${token?.token}` } },
+      context: { headers: authHeaderFromToken(token) },
     });
   };
 

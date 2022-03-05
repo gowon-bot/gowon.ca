@@ -34,3 +34,7 @@ function convertDiscordUser(response: any): DiscordUser {
     avatarURL: `https://cdn.discordapp.com/avatars/${response.id}/${response.avatar}.png`,
   };
 }
+
+export function authHeaderFromToken(token?: DoughnutToken) {
+  return { Authorization: `Bearer ${token?.token}` };
+}
