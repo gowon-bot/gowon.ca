@@ -1,5 +1,6 @@
 import { gql, useLazyQuery } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import ReactSelect, { SingleValue, StylesConfig, Theme } from "react-select";
 import { APIRole, SettingValue } from "../../types/gowonAPI";
 
 const ROLES = gql`
@@ -19,13 +20,18 @@ interface RolePickerProps {
   onChange?: (setting: SettingValue | undefined) => void;
 }
 
+interface RolePickerOption {
+  label: string;
+  value: string;
+  colour: string;
+}
+
 export const RolePicker: React.FunctionComponent<RolePickerProps> = ({
   guildID,
   name,
   initialValue,
   onChange = () => {},
 }) => {
-  const [value, setValue] = useState(initialValue);
   const [getRoles, { data, loading }] = useLazyQuery<
     { roles: APIRole[] },
     { guildID: string }
@@ -35,26 +41,100 @@ export const RolePicker: React.FunctionComponent<RolePickerProps> = ({
     getRoles();
   }, [getRoles]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const role = { id: event.target.value } as APIRole;
-
-    setValue(role);
+  const handleChange = (role: APIRole | undefined) => {
     onChange({ role });
   };
 
+  const options =
+    (!loading &&
+      data &&
+      data.roles.map((r) => ({
+        value: r.id,
+        label: r.name,
+        colour: r.colour,
+      }))) ||
+    [];
+
+  const getColour = (colour: string) =>
+    colour === "#000000" ? "var(--color-primary)" : colour;
+
+  const selectStyles: StylesConfig<RolePickerOption> = {
+    control: (styles) => ({
+      ...styles,
+      cursor: "pointer",
+      color: "var(--color-primary)",
+    }),
+    option: (styles, { data, isSelected }) => ({
+      ...styles,
+      color: getColour(data.colour),
+      ...(isSelected
+        ? {
+            backgroundColor: "var(--background-lighter)",
+            alignItems: "center",
+            display: "flex",
+
+            ":before": {
+              backgroundColor: getColour(data.colour),
+              borderRadius: 10,
+              content: '" "',
+              display: "block",
+              marginRight: 8,
+              height: 10,
+              width: 10,
+            },
+          }
+        : {}),
+
+      cursor: "pointer",
+    }),
+    singleValue: (styles, { data }) => ({
+      ...styles,
+      color: getColour(data.colour),
+    }),
+  };
+
+  const theme = (theme: Theme) => ({
+    ...theme,
+    colors: {
+      ...theme.colors,
+      primary25: "var(--background-darker)",
+      neutral0: "var(--background-lighter)",
+      neutral90: "var(--color-primary)",
+    },
+  });
+
   return (
     <div className="RolePicker">
-      <select name={name || "role"} value={value?.id} onChange={handleChange}>
-        <option value={""}>Select a role...</option>
-        {loading && <option disabled={true}>Loading...</option>}
-        {!loading &&
-          data &&
-          data.roles.map((r) => (
-            <option style={{ color: r.colour }} value={r.id} key={r.id}>
-              {r.name}
-            </option>
-          ))}
-      </select>
+      {
+        <ReactSelect
+          isClearable={true}
+          onChange={(option) => {
+            option = option as SingleValue<RolePickerOption>;
+
+            handleChange(
+              option
+                ? {
+                    id: option.value,
+                    name: option.label,
+                    colour: option.colour,
+                  }
+                : undefined
+            );
+          }}
+          options={options}
+          defaultValue={
+            initialValue
+              ? {
+                  label: initialValue.name,
+                  value: initialValue.id,
+                  colour: initialValue.colour,
+                }
+              : undefined
+          }
+          styles={selectStyles}
+          theme={theme}
+        />
+      }
     </div>
   );
 };

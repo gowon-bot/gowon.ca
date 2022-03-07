@@ -1,3 +1,5 @@
+$mobile-width: 40em;
+
 .SettingDisplay {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,16 @@
 
     label {
       font-size: 1.1em;
+    }
+  }
+
+  .RolePicker {
+    @media only screen and (min-width: $mobile-width) {
+      width: 25%;
+    }
+
+    @media only screen and (max-width: $mobile-width) {
+      width: 80%;
     }
   }
 }
