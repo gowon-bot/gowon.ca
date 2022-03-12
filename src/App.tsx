@@ -17,6 +17,7 @@ import { PrivacyPolicyPage } from "./pages/Legal/PrivacyPolicyPage";
 import { Toaster } from "react-hot-toast";
 import { GuildSettingsPage } from "./pages/Dashboard/Settings/GuildSettingsPage";
 import { DashboardLayout } from "./pages/Dashboard/DashboardLayout";
+import { TwitterSuccessPage } from "./pages/TwitterSuccessPage/TwitterSuccessPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -58,6 +59,11 @@ function App() {
             <Route
               path="spotify-login-success"
               element={<SpotifySuccessPage />}
+            />
+
+            <Route
+              path="twitter-login-success"
+              element={<TwitterSuccessPage />}
             />
 
             <Route path="privacy" element={<PrivacyPolicyPage />} />

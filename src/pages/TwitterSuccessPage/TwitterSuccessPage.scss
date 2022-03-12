@@ -1,0 +1,49 @@
+// @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+.twitter {
+  display: flex;
+  align-items: center;
+
+  .twitter-logo {
+    height: 100px;
+    width: 100px;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-family: "Helvetica Neue", sans-serif;
+    margin-left: 0.2em;
+    font-size: 100px;
+    color: #02bca1;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .twitter-logo {
+      height: 100px;
+      width: 100px;
+    }
+
+    .twitter h1 {
+      font-size: 50px;
+    }
+
+    .success {
+      font-size: 150%;
+    }
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .twitter h1 {
+      font-size: 50px;
+    }
+
+    .success {
+      font-size: 150%;
+    }
+  }
+}
+
+.information {
+  margin-top: 2em;
+  text-align: center;
+}
