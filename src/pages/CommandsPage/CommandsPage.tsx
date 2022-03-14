@@ -5,7 +5,7 @@ import { Page } from "../Page";
 import { CommandHelp } from "../../components/commands/CommandHelp";
 import { SomethingWentWrong } from "../errors/SomethingWentWrong";
 import { DebounceInput } from "react-debounce-input";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import "./CommandsPage.scss";
 
 const COMMANDS = gql`
@@ -43,8 +43,10 @@ const COMMANDS = gql`
 
 export const CommandsPage: React.FunctionComponent = () => {
   const [searchParams] = useSearchParams();
+  const { keywords: paramsKeywords } = useParams<{ keywords: string }>();
+
   const [keywords, setKeywords] = useState<string | undefined>(
-    searchParams.get("q") || undefined
+    paramsKeywords || searchParams.get("q") || undefined
   );
 
   const { loading, error, data } = useQuery(COMMANDS, {
@@ -64,7 +66,7 @@ export const CommandsPage: React.FunctionComponent = () => {
             className="command-search-input"
             minLength={1}
             debounceTimeout={300}
-            value={searchParams.get("q") || ""}
+            value={keywords}
             onChange={(event) =>
               setKeywords(event.target.value.trim() || undefined)
             }

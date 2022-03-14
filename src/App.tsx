@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.scss";
 
@@ -11,13 +11,12 @@ import { Footer } from "./components/Footer/Footer";
 import { useAppDispatch } from "./hooks";
 import { login } from "./store/slices/tokenSlice";
 import { DiscordAuthPage } from "./pages/DiscordAuthPage/DiscordAuthPage";
-import { ApolloProvider } from "@apollo/client";
-import { gowonClient } from "./helpers/gowon/client";
 import { PrivacyPolicyPage } from "./pages/Legal/PrivacyPolicyPage";
 import { Toaster } from "react-hot-toast";
 import { GuildSettingsPage } from "./pages/Dashboard/Settings/GuildSettingsPage";
-import { DashboardLayout } from "./pages/Dashboard/DashboardLayout";
+import { DashboardLayout } from "./components/layouts/DashboardLayout";
 import { TwitterSuccessPage } from "./pages/TwitterSuccessPage/TwitterSuccessPage";
+import { GowonAPILayout } from "./components/layouts/GowonAPILayout";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -45,14 +44,10 @@ function App() {
 
             <Route path="discordAuth" element={<DiscordAuthPage />} />
 
-            <Route
-              path="commands"
-              element={
-                <ApolloProvider client={gowonClient}>
-                  <CommandsPage />
-                </ApolloProvider>
-              }
-            />
+            <Route path="commands" element={<GowonAPILayout />}>
+              <Route path=":keywords" element={<CommandsPage />} />
+              <Route path="" element={<CommandsPage />} />
+            </Route>
 
             <Route path="import-ratings" element={<ImportRatingsPage />} />
 

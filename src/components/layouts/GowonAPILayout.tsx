@@ -3,7 +3,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { gowonClient } from "../../helpers/gowon/client";
 
-export const DashboardLayout: React.FunctionComponent = () => {
+export const GowonAPILayout: React.FunctionComponent = () => {
   return (
     <ApolloProvider client={gowonClient}>
       <Outlet />
