@@ -21,3 +21,16 @@
     background-color: var(--background-primary);
   }
 }
+
+.admin-toggle {
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-left: 0.5em;
+  }
+}
+
+.no-matching {
+  margin-top: 1em;
+}

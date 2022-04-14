@@ -7,10 +7,13 @@ import { SomethingWentWrong } from "../errors/SomethingWentWrong";
 import { DebounceInput } from "react-debounce-input";
 import { useParams, useSearchParams } from "react-router-dom";
 import "./CommandsPage.scss";
+import { authHeaderFromToken } from "../../helpers/doughnut";
+import { useAppSelector } from "../../hooks";
+import ReactSwitch from "react-switch";
 
 const COMMANDS = gql`
-  query getCommands($keywords: String) {
-    commands(keywords: $keywords) {
+  query getCommands($keywords: String, $isAdmin: Boolean) {
+    commands(keywords: $keywords, isAdmin: $isAdmin) {
       id
       idSeed
       parentName
@@ -44,13 +47,16 @@ const COMMANDS = gql`
 export const CommandsPage: React.FunctionComponent = () => {
   const [searchParams] = useSearchParams();
   const { keywords: paramsKeywords } = useParams<{ keywords: string }>();
+  const token = useAppSelector((state) => state.token.value);
 
+  const [isAdmin, setIsAdmin] = useState(false);
   const [keywords, setKeywords] = useState<string | undefined>(
     paramsKeywords || searchParams.get("q") || undefined
   );
 
   const { loading, error, data } = useQuery(COMMANDS, {
-    variables: { keywords },
+    variables: { keywords, isAdmin },
+    context: { headers: authHeaderFromToken(token) },
   });
 
   if (error) {
@@ -73,6 +79,19 @@ export const CommandsPage: React.FunctionComponent = () => {
           />
         </div>
 
+        <div className="admin-toggle">
+          <ReactSwitch
+            name="isAdmin"
+            checked={isAdmin}
+            onChange={(checked) => setIsAdmin(checked)}
+            width={30}
+            height={17}
+          />
+          <label htmlFor="isAdmin" className="subtext">
+            Include administrator commads
+          </label>
+        </div>
+
         {loading ? (
           <></>
         ) : (
@@ -82,7 +101,7 @@ export const CommandsPage: React.FunctionComponent = () => {
         )}
 
         {!loading && keywords && data.commands.length === 0 ? (
-          <div>
+          <div className="no-matching">
             <h5>
               No commands found matching{" "}
               <span className="text-inline">`{keywords}`</span>
