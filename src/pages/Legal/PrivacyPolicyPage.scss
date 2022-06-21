@@ -1,7 +1,5 @@
-$mobile-width: 40em;
-
 .content {
-  @media only screen and (min-width: $mobile-width) {
+  @media only screen and (min-width: 40em) {
     width: 40%;
   }
 }

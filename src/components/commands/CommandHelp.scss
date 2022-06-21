@@ -1,106 +1,84 @@
+$mobile-width: 40em;
+
 .CommandHelp {
-  padding: 1em;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  width: 50%;
-
-  display: flex;
-  flex-direction: column;
-
-  .help-content {
-    padding-left: 1.5em;
-  }
-
-  &.parent > .help-description {
-    margin-bottom: 1em;
-  }
-
   .command-title {
-    .expander {
-      font-size: 0.7em;
-      margin-right: 5px;
-
-      &.expanded {
-        transform: rotate(90deg);
-      }
+    .subtitle {
+      font-size: 50%;
     }
   }
 
-  transition: 150ms ease-in-out;
+  h5 {
+    font-size: 1.1em;
+  }
 
-  &:not(.in-parent):hover {
-    background: var(--background-primary);
+  .help-description,
+  .aliases,
+  .variations {
+    margin-bottom: 10px;
+  }
+
+  .aliases {
+    display: flex;
+    align-items: center;
+
+    .alias {
+      margin-left: 5px;
+    }
+  }
+
+  .usage-title {
+    margin-bottom: 10px;
+  }
+
+  @media only screen and (min-width: $mobile-width) {
+    .variations-content {
+      margin-left: 20px;
+    }
+
+    .usage-content {
+      margin-left: 20px;
+    }
+  }
+}
+
+.CommandHelp:not(.in-parent) {
+  border: 2px var(--background-darker) solid;
+  margin: 20px 5px 5px 5px;
+  padding: 5px 20px 0px 20px;
+  border-radius: 1em;
+
+  &:hover {
+    transition: 100ms ease-in-out;
     cursor: pointer;
   }
 
-  &.in-parent:hover {
-    background: var(--background-lighter);
+  &.expanded {
+    box-shadow: var(--background-darker) 7px 7px 3px;
   }
 
-  &.in-parent {
-    width: 100%;
-    z-index: 10;
+  @media only screen and (min-width: $mobile-width) {
+    width: 50%;
   }
-}
 
-.subtitle {
-  margin-left: 10px;
-  font-size: 0.4em;
-}
+  @media only screen and (max-width: $mobile-width) {
+    margin-left: 0;
+    font-size: 0.7em;
 
-.parent-name {
-  color: var(--color-secondary);
-}
-
-.help-description {
-  color: var(--color-secondary);
-  margin-left: 2px;
-}
-
-.aliases,
-.variations {
-  margin-top: 0.5em;
-  display: flex;
-  align-items: center;
-
-  .aliases-content,
-  .variations-content {
-    display: inline-block;
-
-    .alias {
-      margin-left: 7px;
+    .command-title {
+      font-size: 1.3em;
     }
   }
-}
 
-.variations {
-  display: block;
-
-  .variations-content {
-    padding-left: 1.6em;
-
-    .variation {
-      margin-left: 7px;
-    }
-
-    .variation:first-child {
-      margin-left: 1px;
-    }
+  .children {
+    margin-top: 20px;
   }
 }
 
-.usage {
-  margin-top: 0.5em;
+.CommandHelp.in-parent {
+  margin-bottom: 20px;
+  font-size: 0.9em;
 
-  .usage-title {
-    margin-bottom: 0.7em;
-  }
-
-  .usage-content {
-    padding-left: 1.5em;
-
-    .command-name {
-      color: var(--color-secondary);
-    }
+  .command-title {
+    font-size: 1.4em;
   }
 }

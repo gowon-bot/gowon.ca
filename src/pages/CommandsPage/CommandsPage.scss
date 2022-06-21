@@ -1,3 +1,5 @@
+$mobile-width: 40em;
+
 .Page {
   margin-left: 0.5em;
 }
@@ -5,8 +7,26 @@
 .command-search {
   display: flex;
   align-items: baseline;
-  font-size: 2em;
   margin-bottom: 1em;
+
+  @media only screen and (min-width: $mobile-width) {
+    font-size: 2em;
+
+    .command-search-input {
+      width: 400px;
+    }
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    &,
+    h2 {
+      font-size: 1.2em;
+    }
+
+    .command-search-input {
+      width: 100%;
+    }
+  }
 
   .command-search-input {
     font-family: var(--font-primary);
@@ -14,7 +34,7 @@
     margin-left: 0.3em;
     font-size: inherit;
     border: none;
-    border-bottom: 2px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
     border-radius: 0px;
     padding: none;
     outline: none;

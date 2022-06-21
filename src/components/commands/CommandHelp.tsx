@@ -7,19 +7,21 @@ interface CommandHelpProps {
   command: Command;
   prefix?: string;
   inParent?: boolean;
+  parentSetDisplayHelp?: (toggle: boolean) => void;
 }
 
 export const CommandHelp: React.FunctionComponent<CommandHelpProps> = ({
   inParent,
   command,
   prefix = "!",
+  parentSetDisplayHelp,
 }) => {
-  const [displayHelp, setDisplayHelp] = useState(false);
+  const [displayHelp, setDisplayHelp] = useState(inParent || false);
   const displayUsage = !command.hasChildren;
 
   const handleClick: MouseEventHandler = (e) => {
     e.stopPropagation();
-    setDisplayHelp(!displayHelp);
+    (parentSetDisplayHelp || setDisplayHelp)(!displayHelp);
   };
 
   const childrenDisplayed = command.hasChildren && displayHelp;
@@ -29,7 +31,8 @@ export const CommandHelp: React.FunctionComponent<CommandHelpProps> = ({
       className={
         "CommandHelp" +
         (inParent ? " in-parent" : "") +
-        (childrenDisplayed ? " parent" : "")
+        (childrenDisplayed ? " parent" : "") +
+        (displayHelp ? " expanded" : "")
       }
       onClick={handleClick}
     >
@@ -102,10 +105,22 @@ export const CommandHelp: React.FunctionComponent<CommandHelpProps> = ({
             </div>
           )}
 
-          {!displayUsage &&
-            command.children.map((c: any) => (
-              <CommandHelp command={c} key={c.id} inParent={true}></CommandHelp>
-            ))}
+          {!displayUsage && (
+            <div className="children">
+              {command.children.map((c, idx) => (
+                <>
+                  <CommandHelp
+                    command={c}
+                    key={c.id}
+                    inParent={true}
+                    parentSetDisplayHelp={setDisplayHelp}
+                  ></CommandHelp>
+
+                  {idx !== command.children.length - 1 && <hr />}
+                </>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

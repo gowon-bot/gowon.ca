@@ -67,7 +67,6 @@ export const CommandsPage: React.FunctionComponent = () => {
     <div className="CommandsPage">
       <Page title="Commands">
         <div className="command-search">
-          <h2>Search: </h2>
           <DebounceInput
             className="command-search-input"
             minLength={1}
@@ -76,6 +75,7 @@ export const CommandsPage: React.FunctionComponent = () => {
             onChange={(event) =>
               setKeywords(event.target.value.trim() || undefined)
             }
+            placeholder="Search..."
           />
         </div>
 
@@ -88,7 +88,7 @@ export const CommandsPage: React.FunctionComponent = () => {
             height={17}
           />
           <label htmlFor="isAdmin" className="subtext">
-            Include administrator commads
+            Include administrator commands
           </label>
         </div>
 
