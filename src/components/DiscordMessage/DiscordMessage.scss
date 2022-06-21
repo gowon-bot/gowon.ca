@@ -4,13 +4,13 @@
 
   .profile-picture {
     margin-top: 2px;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.5em;
+    height: 2.5em;
     clip-path: circle();
   }
 
   .header {
-    font-size: 1rem;
+    font-size: 1em;
     overflow: hidden;
 
     .display-name {
@@ -24,7 +24,7 @@
   }
 
   .right {
-    margin-left: 0.8rem;
+    margin-left: 0.8em;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
