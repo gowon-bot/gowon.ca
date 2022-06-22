@@ -16,6 +16,7 @@ $mobile-width: 40em;
 
   @media only screen and (min-width: $mobile-width) {
     margin-bottom: 1em;
+
     .navbar-item,
     .menu-item {
       margin-right: 2em;
@@ -100,6 +101,7 @@ $mobile-width: 40em;
   height: 50px;
   border-radius: 50%;
   box-shadow: 2px 2px var(--color-primary);
+  z-index: 2;
 
   &:hover {
     cursor: pointer;
