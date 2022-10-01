@@ -27,7 +27,22 @@ export async function getUserFromCode(
   return tokenAndUser as TokenAndUser;
 }
 
-function convertDiscordUser(response: any): DiscordUser {
+export async function refreshUser(
+  token: DoughnutToken
+): Promise<TokenAndUser | undefined> {
+  const response = await fetch(doughnutURL + "/token/refresh", {
+    headers: authHeaderFromToken(token),
+    method: "POST",
+  });
+
+  const tokenAndUser = await response.json();
+
+  tokenAndUser.discord_user = convertDiscordUser(tokenAndUser.discord_user);
+
+  return tokenAndUser as TokenAndUser;
+}
+
+function convertDiscordUser(response: Record<string, string>): DiscordUser {
   return {
     id: response.id,
     username: response.username,

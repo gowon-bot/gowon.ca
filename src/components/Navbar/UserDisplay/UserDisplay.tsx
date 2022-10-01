@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { DiscordUser } from "../../../interfaces/DoughnutToken";
-import { logout } from "../../../store/slices/tokenSlice";
-import { destroyToken } from "../../../helpers/doughnut";
+import {
+  loginWithLocalStorage,
+  logout,
+} from "../../../store/slices/tokenSlice";
+import { destroyToken, refreshUser } from "../../../helpers/doughnut";
 import "./UserDisplay.scss";
 
 interface UserDisplayProps {
@@ -12,6 +15,7 @@ interface UserDisplayProps {
 export const UserDisplay: React.FunctionComponent<UserDisplayProps> = ({
   user,
 }) => {
+  const [triedImageRefetch, setTriedImageRefetch] = useState(false);
   const token = useAppSelector((state) => state.token.value);
   const dispatch = useAppDispatch();
 
@@ -20,10 +24,26 @@ export const UserDisplay: React.FunctionComponent<UserDisplayProps> = ({
     destroyToken(token!);
   };
 
+  const refetchImage = async () => {
+    if (!triedImageRefetch) {
+      setTriedImageRefetch(true);
+    }
+
+    await refreshUser(token!).then((user) => {
+      if (user) {
+        dispatch(loginWithLocalStorage(user));
+      }
+    });
+  };
+
   return (
     <div className="UserDisplay">
       <div className="user">
-        <img alt="user profile" src={user.avatarURL}></img>
+        <img
+          alt="user profile"
+          src={user.avatarURL}
+          onError={refetchImage}
+        ></img>
         <p>{user.username}</p>
       </div>
 
