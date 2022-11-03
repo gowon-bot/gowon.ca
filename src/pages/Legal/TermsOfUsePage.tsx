@@ -135,7 +135,7 @@ export const TermsOfUsePage: React.FunctionComponent = () => {
             </li>
             <li>
               (4) You will not access the Discord Bot through automated or
-              non-human means, whether through a Bot, script or otherwise;
+              non-human means, whether through a bot, script or otherwise;
             </li>
             <li>
               (5) You will not use the Bot for any illegal or unauthorized
@@ -230,7 +230,7 @@ export const TermsOfUsePage: React.FunctionComponent = () => {
             </li>
             <li>
               Engage in any automated use of the system, such as using scripts
-              to send comments or messages, or using any data mining, roBots, or
+              to send comments or messages, or using any data mining, robots, or
               similar data gathering and extraction tools.
             </li>
             <li>
@@ -376,7 +376,7 @@ export const TermsOfUsePage: React.FunctionComponent = () => {
 
           <br />
 
-          <h3 id="Bot-management">Bot Management</h3>
+          <h3 id="bot-management">Bot Management</h3>
 
           <br />
 
