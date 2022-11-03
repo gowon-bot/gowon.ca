@@ -17,6 +17,7 @@ import { GuildSettingsPage } from "./pages/Dashboard/Settings/GuildSettingsPage"
 import { DashboardLayout } from "./components/layouts/DashboardLayout";
 import { TwitterSuccessPage } from "./pages/TwitterSuccessPage/TwitterSuccessPage";
 import { GowonAPILayout } from "./components/layouts/GowonAPILayout";
+import { TermsOfUsePage } from "./pages/Legal/TermsOfUsePage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -62,6 +63,8 @@ function App() {
             />
 
             <Route path="privacy" element={<PrivacyPolicyPage />} />
+
+            <Route path="terms-of-use" element={<TermsOfUsePage />} />
 
             <Route path="dashboard" element={<DashboardLayout />}>
               <Route path="settings">

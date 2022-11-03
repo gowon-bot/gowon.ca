@@ -1,6 +1,6 @@
 import React from "react";
 import { Page } from "../Page";
-import "./PrivacyPolicyPage.scss";
+import "./LegalPage.scss";
 
 export const PrivacyPolicyPage: React.FunctionComponent = () => {
   return (
