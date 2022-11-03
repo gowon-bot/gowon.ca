@@ -5,7 +5,7 @@ import "./LegalPage.scss";
 export const TermsOfUsePage: React.FunctionComponent = () => {
   return (
     <div className="TermsOfUsePage">
-      <Page title="Terms of User" centered={true}>
+      <Page title="Terms of Use" centered={true}>
         <div className="content">
           <h1>Terms of Use</h1>
 
