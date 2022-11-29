@@ -3,17 +3,9 @@ select {
   color: var(--color-primary);
   background: var(--background-lighter);
   border: 1px var(--color-primary) solid;
-  border-radius: 1em;
+  border-radius: 10px;
   font-size: 1.1em;
-  padding: 0.3em;
-}
-
-select {
-  border-radius: 0.5em;
-
-  &:hover {
-    cursor: pointer;
-  }
+  padding: 0.4em;
 }
 
 input[type="text"] {
@@ -21,7 +13,6 @@ input[type="text"] {
     width: 30px;
     height: 30px;
     text-align: center;
-    border-radius: 10px;
   }
 }
 
