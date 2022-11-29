@@ -1,6 +1,7 @@
 import { gql, useLazyQuery } from "@apollo/client";
 import React, { useEffect } from "react";
-import ReactSelect, { SingleValue, StylesConfig, Theme } from "react-select";
+import ReactSelect, { SingleValue, StylesConfig } from "react-select";
+import { getTheme } from "../../helpers/ui/select";
 import { APIRole, SettingValue } from "../../types/gowonAPI";
 
 const ROLES = gql`
@@ -93,16 +94,6 @@ export const RolePicker: React.FunctionComponent<RolePickerProps> = ({
     }),
   };
 
-  const theme = (theme: Theme) => ({
-    ...theme,
-    colors: {
-      ...theme.colors,
-      primary25: "var(--background-darker)",
-      neutral0: "var(--background-lighter)",
-      neutral90: "var(--color-primary)",
-    },
-  });
-
   return (
     <div className="RolePicker">
       {
@@ -132,7 +123,7 @@ export const RolePicker: React.FunctionComponent<RolePickerProps> = ({
               : undefined
           }
           styles={selectStyles}
-          theme={theme}
+          theme={getTheme()}
         />
       }
     </div>

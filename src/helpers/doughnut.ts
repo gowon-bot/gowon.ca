@@ -1,7 +1,7 @@
 import {
   DiscordUser,
   DoughnutToken,
-  TokenAndUser,
+  TokenAndUser
 } from "../interfaces/DoughnutToken";
 import { doughnutURL } from "../secrets";
 
@@ -44,9 +44,9 @@ export async function refreshUser(
 
 function convertDiscordUser(response: Record<string, string>): DiscordUser {
   return {
-    id: response.id,
-    username: response.username,
-    avatarURL: `https://cdn.discordapp.com/avatars/${response.id}/${response.avatar}.png`,
+    id: response?.id,
+    username: response?.username,
+    avatarURL: `https://cdn.discordapp.com/avatars/${response?.id}/${response?.avatar}.png`,
   };
 }
 

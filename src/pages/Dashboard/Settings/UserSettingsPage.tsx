@@ -2,8 +2,6 @@ import { useMutation, useQuery } from "@apollo/client";
 import { gql } from "apollo-boost";
 import React from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
-import DefaultServerIcon from "../../../assets/default-server-icon.png";
 import { SettingsForm } from "../../../classes/forms/SettingsForm";
 import { authHeaderFromToken } from "../../../helpers/doughnut";
 import { useAppSelector } from "../../../hooks";
@@ -13,18 +11,14 @@ import { Page } from "../../Page";
 import { SettingDisplay } from "./SettingDisplay";
 import "./SettingsPage.scss";
 
-interface GuildSettingsPageProps {}
+interface UserSettingsPageProps {}
 
 const SETTINGS = gql`
-  query getGuildSettings($guildID: String!) {
-    guildSettings(guildID: $guildID) {
+  query getUserSettings($userID: String!) {
+    userSettings(userID: $userID) {
       value {
-        role {
-          id
-          name
-          colour
-        }
         string
+        number
         boolean
       }
       setting {
@@ -33,41 +27,31 @@ const SETTINGS = gql`
         friendlyName
         description
         type
+        choices
       }
-    }
-
-    guild(guildID: $guildID) {
-      name
-      image
-      canAdmin
     }
   }
 `;
 
 const SAVE_SETTINGS = gql`
-  mutation saveSettings(
-    $guildID: String!
-    $settings: [SettingAndValueInput!]!
-  ) {
-    saveGuildSettings(guildID: $guildID, settings: $settings)
+  mutation saveSettings($userID: String!, $settings: [SettingAndValueInput!]!) {
+    saveUserSettings(userID: $userID, settings: $settings)
   }
 `;
 
-export const GuildSettingsPage: React.FunctionComponent<
-  GuildSettingsPageProps
+export const UserSettingsPage: React.FunctionComponent<
+  UserSettingsPageProps
 > = () => {
   const token = useAppSelector((state) => state.token.value);
 
-  const { guildID } = useParams<{ guildID: string }>();
-
   const { loading, error, data } = useQuery(SETTINGS, {
-    variables: { guildID: guildID || "" },
+    variables: { userID: token?.discord_id || "" },
     context: { headers: authHeaderFromToken(token) },
   });
 
   const [saveSettings, { loading: saving }] = useMutation<
     never,
-    { guildID: string; settings: APISetting[] }
+    { userID: string; settings: APISetting[] }
   >(SAVE_SETTINGS, { context: { headers: authHeaderFromToken(token) } });
 
   if (error) {
@@ -76,7 +60,7 @@ export const GuildSettingsPage: React.FunctionComponent<
     return <SomethingWentWrong />;
   }
 
-  if (!guildID || (!loading && !data?.guild?.name)) {
+  if (!token?.discord_id) {
     return <SomethingWentWrong />;
   }
 
@@ -85,13 +69,15 @@ export const GuildSettingsPage: React.FunctionComponent<
   return (
     <div className="DashboardPage">
       <Page title="Dashboard">
-        <h1>Guild Settings</h1>
+        <h1>User Settings</h1>
+
         {!loading && (
-          <div className="guild-info">
-            <img src={data.guild.image || DefaultServerIcon} alt="" />
-            <h5>{data.guild.name}</h5>
+          <div className="user-info">
+            <img src={token.discord_user.avatarURL} alt="" />
+            <h5>{token.discord_user.username}</h5>
           </div>
         )}
+
         <br />
 
         {loading ? (
@@ -102,7 +88,10 @@ export const GuildSettingsPage: React.FunctionComponent<
               event.preventDefault();
 
               const save = saveSettings({
-                variables: { guildID, settings: settingsForm.asObject() },
+                variables: {
+                  userID: token?.discord_id || "",
+                  settings: settingsForm.asObject(),
+                },
               });
 
               toast.promise(
@@ -131,7 +120,6 @@ export const GuildSettingsPage: React.FunctionComponent<
                       key={s.setting.name}
                       setting={s.setting}
                       initialValue={s.value}
-                      guildID={guildID}
                       onChange={(value) =>
                         settingsForm.set(s.setting.name, value)
                       }
@@ -151,12 +139,12 @@ export const GuildSettingsPage: React.FunctionComponent<
   );
 };
 
-function groupSettings(data: { guildSettings: APISetting[] }): {
+function groupSettings(data: { userSettings: APISetting[] }): {
   [key: string]: APISetting[];
 } {
   const groupedSettings = {} as { [key: string]: APISetting[] };
 
-  for (const setting of data.guildSettings) {
+  for (const setting of data.userSettings) {
     const category = setting.setting.category || "General";
 
     if (!groupedSettings[category]) groupedSettings[category] = [];

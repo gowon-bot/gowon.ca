@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import ReactSelect from "react-select";
 import Switch from "react-switch";
 import { RolePicker } from "../../../components/RolePicker/RolePicker";
+import { getTheme } from "../../../helpers/ui/select";
 import { Setting, SettingValue } from "../../../types/gowonAPI";
 import "./SettingDisplay.scss";
 
@@ -39,6 +41,7 @@ export const SettingDisplay: React.FunctionComponent<SettingDisplayProps> = ({
           height={23}
         />
       )}
+
       {isSettingTextType(setting.type) && (
         <input
           type="text"
@@ -48,11 +51,40 @@ export const SettingDisplay: React.FunctionComponent<SettingDisplayProps> = ({
           maxLength={setting.type === "textshort" ? 3 : undefined}
         />
       )}
+
       {setting.type === "role" && (
         <RolePicker
           guildID={guildID!}
           initialValue={initialValue?.role}
           onChange={(newValue) => handleChange(newValue)}
+        />
+      )}
+
+      {setting.type === "number" && (
+        <input
+          className="number-input"
+          type="number"
+          onChange={(e) =>
+            handleChange({ number: parseInt(e.currentTarget.value) })
+          }
+          defaultValue={value?.number || 0}
+        ></input>
+      )}
+
+      {setting.type === "choice" && (
+        <ReactSelect
+          className="select-input"
+          options={(setting.choices || []).map((c) => ({ label: c, value: c }))}
+          theme={getTheme()}
+          onChange={(e) => handleChange({ string: e?.value })}
+          defaultValue={
+            value?.string
+              ? {
+                  label: value.string,
+                  value: value.string,
+                }
+              : undefined
+          }
         />
       )}
     </div>

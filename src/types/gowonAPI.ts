@@ -11,12 +11,14 @@ export interface Setting {
   description: string;
   type: string;
   scope: string;
+  choices?: string[];
 }
 
 export interface SettingValue {
   role?: APIRole;
   string?: string;
   boolean?: boolean;
+  number?: number;
 }
 
 export interface APISetting {

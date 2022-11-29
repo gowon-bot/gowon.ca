@@ -18,7 +18,10 @@ $mobile-width: 40em;
     }
   }
 
-  .RolePicker {
+  .select-input,
+  .RolePicker,
+  .number-input,
+  .text-input {
     @media only screen and (min-width: $mobile-width) {
       width: 25%;
     }
