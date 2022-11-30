@@ -1,11 +1,14 @@
+import { faSliders } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { destroyToken, refreshUser } from "../../../helpers/doughnut";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { DiscordUser } from "../../../interfaces/DoughnutToken";
 import {
   loginWithLocalStorage,
   logout,
 } from "../../../store/slices/tokenSlice";
-import { destroyToken, refreshUser } from "../../../helpers/doughnut";
 import "./UserDisplay.scss";
 
 interface UserDisplayProps {
@@ -38,6 +41,14 @@ export const UserDisplay: React.FunctionComponent<UserDisplayProps> = ({
 
   return (
     <div className="UserDisplay">
+      <Link to="/dashboard/settings/user">
+        <FontAwesomeIcon
+          className="settings-icon"
+          title="Settings"
+          icon={faSliders}
+        />
+      </Link>
+
       <div className="user">
         <img
           alt="user profile"
