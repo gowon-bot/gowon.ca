@@ -1,10 +1,10 @@
 import React from "react";
 import "./Page.scss";
 
-interface PageProps {
+type PageProps = React.PropsWithChildren<{
   title?: string;
   centered?: boolean;
-}
+}>;
 
 export const Page: React.FunctionComponent<PageProps> = ({
   children,

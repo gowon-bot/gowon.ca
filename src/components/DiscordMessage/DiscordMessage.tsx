@@ -1,12 +1,12 @@
 import React from "react";
 import "./DiscordMessage.scss";
 
-interface DiscordMessageProps {
+type DiscordMessageProps = React.PropsWithChildren<{
   displayName: string;
   avatarURL: string;
   roleColour?: string;
   timestamp?: string;
-}
+}>;
 
 export const DiscordMessage: React.FunctionComponent<DiscordMessageProps> = ({
   children,

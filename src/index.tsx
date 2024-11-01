@@ -1,13 +1,15 @@
+import "./reset.scss";
+
+import "./index.scss";
+
+import { ApolloProvider } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./reset.scss";
-import "./index.scss";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import store from "./store/store";
-import { ApolloProvider } from "@apollo/client";
+import App from "./App";
 import { mirrorballClient } from "./helpers/mirrorball/client";
+import reportWebVitals from "./reportWebVitals";
+import store from "./store/store";
 
 ReactDOM.render(
   <React.StrictMode>

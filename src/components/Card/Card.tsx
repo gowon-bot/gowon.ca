@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Card.scss";
 
-interface CardProps {
+type CardProps = React.PropsWithChildren<{
   linkTo?: string;
-}
+}>;
 
 export const Card: React.FunctionComponent<CardProps> = ({
   children,

@@ -1,14 +1,14 @@
 import React, { MouseEventHandler, useState } from "react";
+import Gowonniess from "../../assets/gowonniess.png";
 import { DiscordMessage } from "../DiscordMessage/DiscordMessage";
 import "./CommandHelp.scss";
-import Gowonniess from "../../assets/gowonniess.png";
 
-interface CommandHelpProps {
+type CommandHelpProps = React.PropsWithChildren<{
   command: Command;
   prefix?: string;
   inParent?: boolean;
   parentSetDisplayHelp?: (toggle: boolean) => void;
-}
+}>;
 
 export const CommandHelp: React.FunctionComponent<CommandHelpProps> = ({
   inParent,

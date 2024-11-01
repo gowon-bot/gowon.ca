@@ -1,7 +1,7 @@
 import {
   DiscordUser,
   DoughnutToken,
-  TokenAndUser
+  TokenAndUser,
 } from "../interfaces/DoughnutToken";
 import { doughnutURL } from "../secrets";
 

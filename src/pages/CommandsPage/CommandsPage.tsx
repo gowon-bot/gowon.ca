@@ -1,15 +1,15 @@
-import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
-import { Page } from "../Page";
-import { CommandHelp } from "../../components/commands/CommandHelp";
-import { SomethingWentWrong } from "../errors/SomethingWentWrong";
+import React, { useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { useParams, useSearchParams } from "react-router-dom";
-import "./CommandsPage.scss";
+import ReactSwitch from "react-switch";
+import { CommandHelp } from "../../components/commands/CommandHelp";
 import { authHeaderFromToken } from "../../helpers/doughnut";
 import { useAppSelector } from "../../hooks";
-import ReactSwitch from "react-switch";
+import { SomethingWentWrong } from "../errors/SomethingWentWrong";
+import { Page } from "../Page";
+import "./CommandsPage.scss";
 
 const COMMANDS = gql`
   query getCommands($keywords: String, $isAdmin: Boolean) {
