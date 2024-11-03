@@ -6,6 +6,7 @@ import { SettingsForm } from "../../../classes/forms/SettingsForm";
 import { authHeaderFromToken } from "../../../helpers/doughnut";
 import { useAppSelector } from "../../../hooks";
 import { APISetting } from "../../../types/gowonAPI";
+import { PleaseSignIn } from "../../errors/PleaseSignIn";
 import { SomethingWentWrong } from "../../errors/SomethingWentWrong";
 import { Page } from "../../Page";
 import { SettingDisplay } from "./SettingDisplay";
@@ -54,13 +55,13 @@ export const UserSettingsPage: React.FunctionComponent<
     { userID: string; settings: APISetting[] }
   >(SAVE_SETTINGS, { context: { headers: authHeaderFromToken(token) } });
 
+  if (!token) {
+    return <PleaseSignIn />;
+  }
+
   if (error) {
     console.log(error);
 
-    return <SomethingWentWrong />;
-  }
-
-  if (!token?.discord_id) {
     return <SomethingWentWrong />;
   }
 

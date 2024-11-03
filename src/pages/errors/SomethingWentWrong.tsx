@@ -1,12 +1,12 @@
 import React from "react";
 import { Page } from "../Page";
-import "./SomethingWentWrong.scss";
+import "./ErrorPage.scss";
 
 export const SomethingWentWrong: React.FunctionComponent = () => {
   return (
     <div className="SomethingWentWrong">
       <Page title=":(" centered={true}>
-        <div>
+        <div className="error">
           <h2>Something went wrong...</h2>
           <img
             alt="Gowon selfie with burnt nuggets"
