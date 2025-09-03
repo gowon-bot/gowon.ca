@@ -7,7 +7,7 @@ export const Footer: React.FunctionComponent = () => {
       <p>
         Made with <span className="code-symbol">&lt;/&gt;</span> and{" "}
         <span className="heart-symbol">&lt;3</span> by{" "}
-        <a href="https://jivison.dev">John</a>
+        <a href="https://jivison.dev">abby</a>
       </p>
     </div>
   );

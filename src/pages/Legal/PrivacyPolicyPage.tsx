@@ -141,7 +141,7 @@ export const PrivacyPolicyPage: React.FunctionComponent = () => {
           <p>
             You can also request deletion of any of your data at any time by
             contacting me through Discord (the support server, or me -
-            john!#2527), or through{" "}
+            @abbyfour), or through{" "}
             <a href="https://github.com/gowon-bot/gowon">Github</a>
           </p>
 
